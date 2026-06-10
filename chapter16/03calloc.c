@@ -13,11 +13,11 @@ int main(void)
         printf("메모리 할당이 문제가 있습니다.\n");
         exit(EXIT_FAILURE);
     }
-
+    free(ary);
     myprintf(ary, 3);
 
     // 가이드: 동적 메모리를 해제하세요.
-    free(ary);
+    
 
     return 0;
 }
