@@ -1,31 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct selfref{
-    int n;
-    struct selfref* next;
+struct selfref { 
+	int n;
+	struct selfref* next; 
 };
 
 int main(void){
-    typedef struct selftref list;
+	typedef struct selfref list;
 
-    list * first = NULL, * second = NULL;
-    first = (list*) malloc(sizeof(list));
-    second = (list*)malloc(sizeof(list));
+	list* first = NULL, * second = NULL;
+	first = (list*) malloc( sizeof(list) );
+	second = (list*) malloc( sizeof(list) );
 
-    first -> n = 100;
-    second -> n =200;
-    first -> next = second -> next = NULL;
+	first->n = 100;
+	second->n = 200;
+	first->next = second->next = NULL;
+	first->next = second; 
 
-    first -> next = second;
+	printf("%p\n", first);
+	printf("%d %p\n", first->n, first->next);
+	printf("%d\n\n", first->next->n);
 
-    printf("%d \n",first);
-    printf("%d %p\n",first-> n , first->next);
-    printf("%d \n\n",first-> next -> n);
-    printf("%p\n",second);
-    printf("%d %p\n",second-> n,second->next);
+	printf("%p\n", second);
+	printf("%d %p\n", second->n, second->next);
 
-    free(first);
-    free(second);
-    return 0;
+	free(first); 
+	free(second);
+
+	return 0;
 }
